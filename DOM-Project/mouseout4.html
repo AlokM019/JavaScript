@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MouseOut</title>
+</head>
+<body>
+
+  <h1 id="heading">Hover over me to change color</h1>
+
+  <script>
+    // 4. Mouse Out
+    document.addEventListener("DOMContentLoaded", function() {
+      const myHeading = document.getElementById("heading");
+
+      myHeading.addEventListener("mouseover", changeColor);
+      myHeading.addEventListener("mouseout", resetColor);
+
+      function changeColor() {
+        myHeading.style.color = "purple"; 
+        // Change to your desired color
+      }
+
+      function resetColor() {
+        myHeading.style.color = "";
+        // Reset to default color (CSS rules will be applied)
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MouseOver</title>
+</head>
+<body>
+  
+  <h1 id="heading" style="display: inline;">Hover over me to change color</h1>
+
+  <script>
+    // 3. Mouse Over
+    document.addEventListener("DOMContentLoaded", function() {
+      const myHeading = document.getElementById("heading");
+
+      myHeading.addEventListener("mouseover", changeColor);
+
+      function changeColor() {
+        myHeading.style.color = "blue"; 
+        // Change to your desired color
+      }
+    });
+  </script>
+</body>
+</html>
