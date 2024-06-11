@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Document</title>
+   <style>
+      body{
+         background-color: rgb(36, 34, 34);
+      }
+      div{
+
+         margin: 2px;
+         width: 100px;
+         height: 100px;
+         background-color: blueviolet;
+         position: relative;
+         animation-name: changeColor;
+         animation-duration: 10s;
+         animation-delay: 2s;
+         animation-iteration-count: infinite;
+         animation-direction: alternate-reverse;
+      }
+
+      /* alternative for declaring ANIMATION  (shorthand property) */
+      /* div{
+         animation: changeColor 3s ease-out 1s 3 alternate-reverse forwards;
+      } */
+
+      @keyframes changeColor {
+         0%{
+            background-color: #ffa500;
+            top: 0px;
+            left: 0px;
+         }
+         25%{
+            background-color: #ffffff;
+            top: 0px;
+            left: 390px;
+         }
+         50%{
+            background-color:  #008000;
+            top: 200px;
+            left: 390px;
+         }
+         75%{
+            background-color: #ffff00;
+            top: 200px;
+            right: 0px;
+         }
+         100%{
+            background-color: #800080;
+            top: 0px;
+            left: 0px;
+         }
+      }
+
+      #ease{
+         animation-timing-function: ease;
+      }
+      #linear{
+         animation-timing-function: linear;
+      }
+      #ease-in{
+         animation-timing-function: ease-in;
+      }
+      #ease-out{
+         animation-timing-function: ease-out;
+      }
+      #ease-in-out{
+         animation-timing-function: ease-in-out;
+      }
+      #cubic-bezier{
+         animation-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      }
+      
+      </style>
+</head>
+<body>
+
+   <div id="ease">ease</div>
+   <div id="linear">linear</div>
+   <div id="ease-in">ease-in</div>
+   <div id="ease-out">ease-out</div>
+   <div id="ease-in-out">ease-in-out</div>
+   <div id="cubic-bezier">cubic-bezier</div>
+
+</body>
+</html>

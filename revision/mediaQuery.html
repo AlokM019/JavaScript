@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Gradient</title>
+   <style>
+      div{
+         text-align: center;
+      }
+
+      @media (max-width : 400px) {
+         body{
+            background-color: orange;
+            /* content: "Color is Orange"; */
+         }
+         #div::after{
+            content: "Color is orange";
+         }
+      }
+
+      @media (400px <= width <= 600px) {
+         body{
+            background-color: aqua;
+         }
+         #div::after{
+            content: "Color is aquamarine";
+         }
+      }
+
+      @media (min-width: 600px) and (max-width: 900px) {
+         body{
+            background-color: red;
+         }
+         #div::after{
+            content: "Color is red";
+         }
+      }
+
+      @media (min-width: 900px){
+         body{
+            background-color: navajowhite;
+         }
+         #div::before{
+            content: "Color is navajowhite";
+         }
+      }
+   </style>
+</head>
+<body>
+   <div id="div"></div>
+</body>
+</html>
