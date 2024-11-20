@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Quiz App</title>
+   <style class="css">
+      *{
+         margin: 0px;
+         padding: 0px;
+         box-sizing: border-box;
+         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      body{
+         background-color: #1e1e2f;
+         color: #f5f5f5;
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         padding: 20px;
+      }
+      h1{
+         margin: 20px 0;
+         font-family: Georgia, 'Times New Roman', Times, serif;
+         font-size: 50px;
+         background-image: linear-gradient( to right, red, green, blue);
+         background-clip: text;
+         color: transparent;
+         text-align: center;
+      }
+
+      #quiz{
+         width: 100%;
+         max-width: 600px;
+         background-color: #2b2b3d;
+         padding: 20px;
+         border-radius: 8px;
+         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+         
+      }
+
+      .question{
+         margin-bottom: 15px;
+         font-size: 1.2rem;
+
+      }
+      .answers{
+         margin-bottom: 20px;
+      }
+
+      label{
+         display: block;
+         margin: 5px 0;
+         cursor: pointer;
+      }
+      input[type ="radio"]{
+         margin-right: 10px;
+      }
+      button{
+         font-weight: bold;
+         background-color: #ff758c;
+         color: #fff;
+         border: none;
+         margin: 10px;
+         padding: 10px 20px ;
+         font-size: 1rem;
+         border-radius: 5px;
+         cursor: pointer;
+         transition: backgroud-color 0.3s ease;
+      }
+
+      button:hover{
+         background-color: #ff6263;
+      }
+      #results{
+         margin-top: 20px;
+         font-size: 1.2rem;
+      }
+
+      .correct{
+         color: green;
+         font-weight: bold;
+      }
+      .inCorrect{
+         color: red;
+         font-weight: bold;
+      }
+   </style>
+</head>
+<body style="background-color: black; color: azure;">
+   <h1>Javascript Quiz App</h1>
+
+   <div id="quiz"></div>
+
+   <button id="submit">Submit</button>
+
+   <div id="results"></div>
+
+   <script>
+      const quizContainer = document.getElementById('quiz')
+      const submitButton = document.getElementById('submit')
+      const resultsContainer = document.getElementById('results')
+
+      const myQuestions = [
+         {
+            question : "1. What is the capital of France?",
+            answers : {
+               a: "Paris",
+               b: "London",
+               c: "New York"
+            },
+            correctAnswer : "a"
+         },
+
+         {
+            question : "2. What is the capital of India?",
+            answers : {
+               a: "Mumbai",
+               b: "kolkata",
+               c: "Delhi"
+            },
+            correctAnswer : "c"
+         },
+
+         {
+            question: "3. What is the largest country in the world?",
+            answers: {
+            a: "Russia",
+            b: "China",
+            c: "United States"
+            },
+            correctAnswer: "a"
+        },
+
+        {
+            question: "4. What is the currency of Japan?",
+            answers: {
+            a: "Yuan",
+            b: "Yen",
+            c: "Euro",
+            },
+            correctAnswer: "b"
+        }
+      ];
+
+      function buildQuiz (){
+         const output = [];
+         
+         myQuestions.forEach((currentQuestion, questionNumber) => {
+            
+            const answers = [];
+
+            for(letter in currentQuestion.answers){
+               answers.push(
+                  `<label> <input type= "radio" name="question${questionNumber}" value="${letter}" onchange = "resetStyles(${questionNumber})">${letter} : ${currentQuestion.answers[letter]}</label>`
+
+               )
+            }
+            //console.log(answers);
+            output.push(
+
+            `<div class= "question">${currentQuestion.question}</div>
+            <div class= "answers">${answers.join('')}</div>
+            `
+
+            )
+
+         });
+         //console.log(output);
+         quizContainer.innerHTML = output.join('')
+      }
+
+      function showResults(){
+         const answerContainers = quizContainer.querySelectorAll('.answers')
+
+         answerContainers.forEach(container => {
+            const labels = container.querySelectorAll('label');
+            labels.forEach(label => {
+               label.classList.remove('correct', 'inCorrect'); // Remove any previous result styling
+            });
+         });
+
+         let numCorrect = 0;
+
+         myQuestions.forEach((currentQuestion, questionNumber) => {
+            //find selected Answers
+            const answerContainer = answerContainers[questionNumber];
+            
+            //input[name = "question"]: checked\
+            const selector = `input[name = question${questionNumber}]:checked`;
+            const userAnswer = (answerContainer.querySelector(selector) || {}).value
+
+            if (userAnswer) {
+               const selectedLabel = answerContainer.querySelector(`input[value="${userAnswer}"]`).parentElement;
+
+               if(userAnswer === currentQuestion.correctAnswer){
+                  numCorrect++;
+                  selectedLabel.classList.add('correct');
+               } else {
+                  selectedLabel.classList.add('inCorrect')
+               }
+            }
+         });
+
+         resultsContainer.innerHTML =  `<strong>Results :</strong> ${numCorrect} out of ${myQuestions.length}`
+
+      }
+
+      buildQuiz()
+
+      submitButton.addEventListener('click', showResults)
+
+   </script>
+</body>
+</html>
