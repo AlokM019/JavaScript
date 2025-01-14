@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Expanding Cards</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+   <div id="container">
+      <div class="panel active" style="background-image: url(https://cdn.pixabay.com/photo/2022/07/12/07/06/lake-7316684_1280.jpg);">
+         <h3>Explore the world</h3>
+      </div>
+      <div class="panel" style="background-image: url(https://cdn.pixabay.com/photo/2022/07/12/07/06/lake-7316684_1280.jpg);">
+         <h3>Explore the world</h3>
+      </div>
+      <div class="panel" style="background-image: url(https://cdn.pixabay.com/photo/2022/07/12/07/06/lake-7316684_1280.jpg);">
+         <h3>Explore the world</h3>
+
+      </div>
+      <div class="panel" style="background-image: url(https://cdn.pixabay.com/photo/2022/07/12/07/06/lake-7316684_1280.jpg);">
+         <h3>Explore the world</h3>
+
+      </div>
+      <div class="panel" style="background-image: url(https://cdn.pixabay.com/photo/2022/07/12/07/06/lake-7316684_1280.jpg);">
+         <h3>Explore the world</h3>
+
+      </div>
+   </div>
+
+   <script>
+      const panels = document.querySelectorAll('.panel');
+
+      panels.forEach(panel => {
+         panel.addEventListener('click', () => {
+            removeActiveClasses()
+            panel.classList.add('active')
+         })
+      })
+
+      function removeActiveClasses() {
+         panels.forEach(panel => {
+            panel.classList.remove('active')
+         })
+      }
+
+   </script>
+   
+</body>
+</html>
